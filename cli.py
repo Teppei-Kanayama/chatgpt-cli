@@ -3,16 +3,19 @@ import os
 import json
 import sys
 
+
 URL = "https://api.openai.com/v1/chat/completions"
 HEADERS = {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + os.environ.get('OPENAI_API_KEY')
-    }
+    "Content-Type": "application/json",
+    "Authorization": "Bearer " + os.environ.get('OPENAI_API_KEY')
+}
+
 
 def format_message(message):
     if not 'GPT >' in message:
         return '\nGPT > ' + message + '\n\n' + '私 > '
     return '\n' + message + '\n\n' + '私 > '
+
 
 if __name__ == '__main__':
     prompt = sys.stdin.read()
