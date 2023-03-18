@@ -22,7 +22,11 @@ if __name__ == '__main__':
     if response.ok:
         result = json.loads(response.content)
         message = result['choices'][0]['message']['content']
+
+        if not 'GPT >' in message:
+            message = 'GPT > ' + message
+
         with open('input.md', 'a') as f:
-            f.write(message + '\n\n' + '私 > ')
+            f.write('\n' + message + '\n\n' + '私 > ')
     else:
         print(response.content)
